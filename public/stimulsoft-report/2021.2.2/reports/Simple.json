@@ -1,0 +1,52 @@
+{
+	"Customers": [
+		{
+			"customer_id": 1,
+			"customer_name": "Customer 1",
+			"transactions": [
+				{
+					"item_name": "Keyboard",
+					"item_price": 150000,
+					"qty": 5
+				},
+				{
+					"item_name": "Mouse",
+					"item_price": 50000,
+					"qty": 5,
+				},
+			]
+		},
+		{
+			"customer_id": 2,
+			"customer_name": "Customer 2",
+			"transactions": [
+				{
+					"item_name": "Buku",
+					"item_price": 5000,
+					"qty": 12,
+				},
+				{
+					"item_name": "Pulpen",
+					"item_price": 3000,
+					"qty": 2,
+				},
+			]
+		},
+		{
+			"customer_id": 3,
+			"customer_name": "Customer 3",
+			"transactions": [
+				{
+					"item_name": "Baju",
+					"item_price": 150000,
+					"qty": 2,
+				},
+				{
+					"item_name": "Celana",
+					"item_price": 160000,
+					"qty": 1,
+				},
+			]
+		}
+	]
+}
