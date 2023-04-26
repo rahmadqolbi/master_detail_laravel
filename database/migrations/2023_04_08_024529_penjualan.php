@@ -33,5 +33,6 @@ class Penjualan extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('penjualan');
     }
 }

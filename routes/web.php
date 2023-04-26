@@ -41,7 +41,7 @@ Route::post('/proses_delete', [LatihanController::class, 'proses_delete']);
 Route::get('/reports', [LatihanController::class, 'reports']);
 Route::get('/export', [LatihanController::class, 'export']);
 
-Route::post('/getPosition/{no_invoice}', [LatihanController::class, 'getPosition'])->name('getPosition.post');
+Route::get('/getPosition/{no_invoice}', [LatihanController::class, 'getPosition']);
 
 
 // Route::get('/detail{no_invoice}', [LatihanController::class, 'detail']);

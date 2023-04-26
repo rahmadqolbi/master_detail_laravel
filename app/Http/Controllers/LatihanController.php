@@ -202,15 +202,22 @@ public function index(Request $request)
     // }
     public function simpan(Request $request)
     {
-      
-
-        
          //NOTE - tambahkan fungsi alert jika eksekusi user gagal
-    if (empty($request->no_invoice) || empty($request->tgl_pembelian) || empty($request->nama_pelanggan) || empty($request->jenis_kelamin) || empty($request->saldo) || empty($request->nama_barang) || empty($request->qty) || empty($request->harga)) {
+    if (empty($request->tgl_pembelian) || empty($request->nama_pelanggan) || empty($request->jenis_kelamin) || empty($request->saldo) || empty($request->nama_barang) || empty($request->qty) || empty($request->harga)) {
         return response()->json(['status' => 'error', 'message' => 'Data Tidak Tersimpan']);
     }
     DB::beginTransaction();//NOTE - untuk memulai data transaction
     try {
+        
+        $last_invoice_no = DB::table('penjualan')->max('no_invoice');
+        //NOTE - untuk mengambil nilai terbesar dari kolom 'no_invoice' pada tabel 'penjualan' dengan menggunakan metode 'max'
+        $new_invoice_no = ($last_invoice_no) ? intval(substr($last_invoice_no, 3)) + 1 : 1;
+        //Fungsi substr() digunakan untuk memotong string menjadi potongan-potongan kecil, sedangkan intval() digunakan untuk mengkonversi nilai numerik dari suatu variabel.
+        //NOTE - untuk mengambil angka dari string nomor invoice terakhir dan mengubahnya menjadi integer untuk dijadikan nilai running number pada invoice baru.
+        $no_invoice = 'INV' . str_pad($new_invoice_no, 4, '0', STR_PAD_LEFT);
+        //NOTE - kode ini menambahkan awalan "INV" ke nomor invoice baru yang sudah dibuat di langkah sebelumnya. Kemudian, menggunakan str_pad() untuk menambahkan angka nol di depan nomor invoice baru jika panjangnya kurang dari 4 digit.
+        $request->merge(['no_invoice' => $no_invoice]);
+        
         $latihan = new LatihanModel;
         $latihan2 = new LatihanModel2;
         $latihan->no_invoice = strtoupper($request->no_invoice);
@@ -264,6 +271,7 @@ public function index(Request $request)
             return response()->json($response, 500);
             //NOTE - Jika salah satu operasi dalam transaksi tersebut gagal, maka semua operasi dalam transaksi tersebut akan di-rollback atau dikembalikan ke kondisi semula.
         }
+        
     }
     
     

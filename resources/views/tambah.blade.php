@@ -20,9 +20,11 @@
             <td>
                 <label>No.Invoice</label>
             </td>
+          
             <td>
-                <input type="text" id="no_invoice1" name="no_invoice" class="FormElement ui-widget-content ui-corner-all autofocus" autofocus autocomplete="off" required>
+                <input type="text" id="no_invoice1" name="no_invoice" class="FormElement ui-widget-content ui-corner-all autofocus" autofocus autocomplete="off" disabled>
             </td>
+         
         </tr>
       
         <tr>
